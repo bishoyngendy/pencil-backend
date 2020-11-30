@@ -35,7 +35,11 @@ router.get("/search", async (req, res) => {
   const q = req.query.q;
   if (q) {
     const questions = await Question.find({ annotations: q.toString() });
-    res.send(questions);
+    res.send(
+      questions.map((item) => {
+        return item.name;
+      })
+    );
   } else {
     res.send([]);
   }
