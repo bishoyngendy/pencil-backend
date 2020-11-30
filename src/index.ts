@@ -15,6 +15,8 @@ app.use(bodyParser.json());
 app.use("/annotations", annotationRouter);
 app.use("/questions", questionRouter);
 
+app.set("port", port);
+
 // start the express server
 app.listen(port, () => {
   // tslint:disable-next-line:no-console
