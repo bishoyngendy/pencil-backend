@@ -1,17 +1,19 @@
 import express from "express";
 import mongoose from "mongoose";
-
 import * as dotenv from "dotenv";
 dotenv.config({ path: "./.env" });
+
+import * as bodyParser from "body-parser";
+import annotationRouter from "./annotations";
+import questionRouter from "./questions";
 
 const app = express();
 const port = 8080;
 
-// // define a route handler for the default home page
-app.get("/", (req, res) => {
-  // render the index template
-  res.send("testing");
-});
+app.use(bodyParser.json());
+
+app.use("/annotations", annotationRouter);
+app.use("/questions", questionRouter);
 
 // start the express server
 app.listen(port, () => {
@@ -20,6 +22,6 @@ app.listen(port, () => {
 });
 
 // Connect to db
-mongoose.connect(process.env.DB_CONNECTION, () => {
-  console.log("connected to db");
+mongoose.connect(process.env.DB_CONNECTION, { useNewUrlParser: true }, () => {
+  console.log("Connected to Database");
 });
