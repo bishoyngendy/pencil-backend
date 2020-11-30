@@ -2,6 +2,7 @@
   "name": "pencil-backend",
   "version": "1.0.0",
   "description": "",
+  "type": "module",
   "main": "src/index.ts",
   "scripts": {
     "start": "nodemon --experimental-modules ./src/index.ts",
